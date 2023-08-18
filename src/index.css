@@ -1,13 +1,80 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: #000;
+    color: #fff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.btn + .btn {
+    margin-left: 8px;
+}
+.navTop .active {
+    color: rebeccapurple;
+}
+.onlyIcon {
+    color: #ccc !important;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    padding: 6px !important;
+}
+.onlyIcon:hover {
+    color: #fff !important;
+}
+.text-block {
+    /* word-break: break-all; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.text-cart {
+    /* word-break: break-all; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+}
+.rendering-text {
+    text-rendering: optimizeLegibility;
+}
+.bg-img {
+    background: linear-gradient(0deg, #181818, transparent 50%);
+    background-color: transparent;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: currentColor;
+}
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar-thumb {
+    background-color: #999; /* Màu nền của phần thumb */
 }
+.scroll-none::-webkit-scrollbar {
+    width: 0rem;
+    background: transparent;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

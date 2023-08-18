@@ -1,0 +1,78 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { useEffect, useState } from 'react';
+import getData from '~/until/request';
+
+const DATA_LIST = {
+    homeList: [
+        { title: 'Trending', url: 'trending/all/day' },
+        { title: 'Top rate', url: 'movie/top_rated' },
+        { title: 'Now Playing', url: 'movie/now_playing' },
+        { title: 'Popular', url: 'movie/popular' },
+        { title: 'Upcoming', url: 'movie/upcoming' },
+    ],
+    movieList: [
+        { title: 'Tv Trending', url: 'trending/tv/day' },
+        { title: 'Tv Airing today', url: 'tv/airing_today' },
+        { title: 'Tv on the air', url: 'tv/on_the_air' },
+        { title: 'Tv Popular', url: 'tv/popular' },
+        { title: 'Tv Top rated', url: 'tv/top_rated' },
+    ],
+    tvList: [
+        { title: 'Tv Trending', url: 'trending/tv/day' },
+        { title: 'Tv Airing today', url: 'tv/airing_today' },
+        { title: 'Tv on the air', url: 'tv/on_the_air' },
+        { title: 'Tv Popular', url: 'tv/popular' },
+        { title: 'Tv Top rated', url: 'tv/top_rated' },
+    ],
+};
+
+function Slider({ url, title }) {
+    const [movies, setMovie] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getData(url);
+                setMovie(response.data.results);
+                console.log('request');
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
+    }, []);
+    return (
+        <div className="pl-10 mt-6">
+            <h4 className="py-4 text-xl font-semibold">{title}</h4>
+            <Swiper modules={[Navigation, Pagination, Scrollbar, A11y]} spaceBetween={8} slidesPerView={5} navigation>
+                {home &&
+                    DATA_LIST.homeList.map((movie, index) => (
+                        <SwiperSlide key={index} className="">
+                            <img
+                                className="w-full rounded"
+                                src={'https://image.tmdb.org/t/p/w500' + movie.backdrop_path}
+                                alt={movie.title}
+                            />
+                        </SwiperSlide>
+                    ))}
+            </Swiper>
+        </div>
+    );
+}
+
+export default Slider;
+// getData(url)
+// .then((response) => {
+//     setMovie(response.data.results);
+//     console.log('request');
+// })
+// .catch((error) => {
+//     console.error(error);
+// });
